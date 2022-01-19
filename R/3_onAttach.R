@@ -1,5 +1,4 @@
-#' @import data.table ggplot2
-#' @importFrom magrittr %>%
+#' @import data.table
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(paste0(
     "splmaps ",
