@@ -1,29 +1,48 @@
 Package: splmaps
-Title: Map visualisation tools for Norway
-Version: 2020.5.25
+Title: Preformatted Maps of Norway That Don't Need Geolibraries
+Version: 1.0.0
 Authors@R: c(
   person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-6747-1726")
   ),
   person("Chi", "Zhang", email = "andreachizhang@yahoo.com", role = c("aut"), 
-    comment = c(ORCID = "0000-0003-0501-5909")
-  ),
-  person(given = "Folkehelseinstituttet", role = c("cph"))
+    comment = c(ORCID = "0000-0003-0501-5909"))
   )
-Description: A system to help you organize projects. Most analyses have three (or more) main sections: code, results, and data, each with different requirements (version control/sharing/encryption). You provide folder locations and 'org' helps you take care of the details.
-Depends: R (>= 3.3.0)
-License: MIT + file LICENSE
-URL: https://docs.sykdomspulsen.no/splmaps, https://github.com/sykdomspulsen-org/splmaps
-BugReports: https://github.com/sykdomspulsen-org/splmaps/issues
-Encoding: UTF-8
+Description: Preformatted maps of Norway that don't need geolibraries.
+Depends: R (>= 3.5.0)
+License: MIT
+URL: https://folkehelseinstituttet.github.io/splmaps, https://github.com/folkehelseinstituttet/splmaps
+BugReports: https://github.com/folkehelseinstituttet/splmaps/issues
 LazyData: true
-Imports: data.table
+Imports: data.table,
+    utils
 Suggests: testthat,
+    fhidata,
     knitr,
     rmarkdown,
-    rstudioapi,
+    geojsonio,
+    broom,
+    rmapshaper,
+    ggplot2,
+    rgeos,
+    mapproj,
+    stringr,
     glue,
-    magrittr,
-    ggplot2
+    lubridate,
+    readxl,
+    zoo,
+    crayon,
+    fs,
+    sp,
+    forcats,
+    ncdf4,
+    reshape2,
+    sf,
+    methods,
+    ggrepel,
+    leaflet,
+    magrittr
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Encoding: UTF-8
+Additional_repositories: https://folkehelseinstituttet.github.io/drat/

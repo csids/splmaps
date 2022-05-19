@@ -1,0 +1,465 @@
+---
+title: "Introduction to splmaps"
+output: rmarkdown::html_vignette
+author: "Richard Aubrey White, Chi Zhang"
+date: "2021-01-15"
+vignette: >
+  %\VignetteIndexEntry{Introduction to splmaps}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+`splmaps` is a package for map visualisation developed by researchers at Norwegian Institute of Public Health (Folkehelseinstituttet, FHI). The package contains map data for Norway at different levels geographic granularity and layout. 
+
+
+```{r echo = F, results='asis'}
+tb <- readxl::read_xlsx(system.file("documentation", "splmaps_ref.xlsx", package = "splmaps"))
+knitr::kable(tb)
+```
+
+## Naming scheme
+
+The naming scheme has the following pattern: `scope_geogranularity_type_border_layout_Rclass`. 
+
+#### Scope
+This is what content the map data contains. Currently we focus on these 2 scopes: 
+
+* country (Norway)
+* city (Oslo)
+
+
+#### Geogranularity 
+
+This is the geographic granularity, which defines the border of county, municipality and ward. We follow the EU definition of territorial unit ([NUTS](https://ec.europa.eu/eurostat/web/nuts/nuts-maps), [LAU](https://ec.europa.eu/eurostat/web/nuts/local-administrative-units)) when applicable.
+
+* [NUTS3](https://ec.europa.eu/eurostat/documents/345175/7451602/2021-NUTS-3-map-NO.pdf): Nomenclature of Territorial Unit level 3. Equivalent to fylke (county) in Norway.  
+
+* LAU2: Local Administrative Unit level 2. Equivalent to kommune (municipality) in Norway. 
+
+* ward: district within a municipality. Bydel in Norwegian. So far we only have the data for Oslo.
+
+* xxx: only used for plotting `position_title`. (see [example](#norway-layout-insert-oslo))
+
+
+#### Type 
+
+The type of the data object to distinguish whether it's a geographical map or coordinate for label positions. 
+
+* map: map data, in either `data.table` or `sf` class.
+
+* position geolabels: geographical coordinates for the position of labels, e.g. "county03" or "Oslo".
+
+* position title (insert oslo): geographical coordinate for position of title. So far it's only for layout: `insert_oslo`. (see [example](#norway-layout-insert-oslo))
+
+
+
+
+
+#### Border 
+
+Due to recent redistricting, there exist multiple versions of county borders. We provide maps that match the borders in the following years: 
+
+* 2020: the current border, this map contains 11 counties. 
+
+* 2019: border before redistricting in 2020. This map contains 19 counties. 
+
+* 2017: border before redistricting in 2018. 
+
+More information on counties in Norway can be found [here](https://en.wikipedia.org/wiki/Counties_of_Norway#cite_note-13). 
+
+
+
+#### Layout
+
+Map layout, see [this section](#layout-options) for examples. 
+
+
+
+
+#### R class
+
+R class for the map object. 
+
+* `data.table`: applicable for maps and label/title coordinates.
+
+* `sf`: simple feature for spatial vector data. More on [sf](https://r-spatial.github.io/sf/articles/).
+
+
+
+# Examples
+
+This section provides examples on:
+
+* Layout options
+
+* Customization with color and label
+
+* `sf` for interactive maps
+
+
+#### Set up
+
+```{r setup}
+library(splmaps)
+library(ggplot2)
+library(data.table)
+library(magrittr)
+```
+
+
+
+
+
+## Layout options
+
+We have 3 layout options for Norway map: **default, split** and **insert Oslo**. 
+
+For Oslo county map, we only have the **default** layout. 
+
+
+### Norway layout: default
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::norway_lau2_map_b2020_default_dt)
+q <- ggplot()
+q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group), 
+                      color="black", fill="white", size=0.1)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "Default layout")
+q
+```
+
+### Norway layout: split 
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::norway_lau2_map_b2020_split_dt)
+q <- ggplot()
+q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group), 
+                      color="black", fill="white", size=0.1)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "Split layout")
+q
+```
+
+### Norway layout: insert oslo
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::norway_lau2_map_b2020_insert_oslo_dt)
+q <- ggplot()
+q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group), 
+                      color="black", fill="white", size=0.1)
+
+# add title "Oslo"
+q <- q + annotate(
+  "text", 
+  x = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long, 
+  y = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+  label = "Oslo"
+  )
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "Insert Oslo layout")
+q
+```
+
+#### Oslo ward layout: default 
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::oslo_ward_map_b2020_default_dt)
+q <- ggplot()
+q <- q + geom_polygon(data = pd, aes(x = long, y = lat, group = group), 
+                      color="black", fill="white", size=0.1)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "Oslo wards")
+q
+```
+
+
+
+
+## Customise the maps 
+
+The maps can be easily customized with color and labels. 
+
+#### Automatic coloring by `location_code`
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::norway_nuts3_map_b2020_insert_oslo_dt)
+
+q <- ggplot()
+q <- q + geom_polygon(
+  data = pd, 
+  mapping = aes(
+    x = long, 
+    y = lat,
+    group = group,
+    fill = location_code
+  ),  
+  color="black",
+  size=0.1
+)
+q <- q + annotate(
+  "text",
+  x = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
+  y = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+  label = "Oslo"
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "")
+q
+```
+ 
+#### Customized coloring with external information
+
+It is also possible to specify the color by user-defined groups. Here we show an example of assigning different (pseudo) risk level to each county. 
+
+```{r fig.height=6, fig.width=6, warning=FALSE}
+pd <- copy(fhimaps::norway_nuts3_map_b2020_insert_oslo_dt)
+
+# assign each location a random category for different colors
+location_info <- unique(pd[,c("location_code")])
+location_info[,category:=rep(
+  c("Good","Normal","Neutral","Bad","Very Bad"),
+  each=3)[1:.N]
+]
+location_info[,category:=factor(
+  category,
+  levels=c("Good","Normal","Neutral","Bad","Very Bad")
+  )
+]
+print(location_info)
+
+# join the map data.table
+pd[location_info,on="location_code",category:=category]
+
+q <- ggplot()
+q <- q + geom_polygon(
+  data = pd, 
+  mapping = aes(
+    x = long,
+    y = lat,
+    group = group,
+    fill=category
+  ), 
+  color="black", 
+  size=0.25
+)
+q <- q + annotate(
+  "text",
+  x = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
+  y = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+  label = "Oslo"
+)
+q <- q + coord_quickmap()
+# it is possible to use the color palette provided in fhiplot
+# q <- q + fhiplot::scale_fill_fhi("Category", palette = "map_seq_complete", direction = 1)
+q <- q + labs(title="")
+q <- q + theme_void()
+q
+```
+
+
+### Add labels to each geographic unit
+
+We can add labels of county index onto the maps. There are several options for adding texts on a graph in `ggplot2`. We recommend `geom_label()` to add the labels if no label overlap occurs, otherwise we recommend using `ggrepel::geom_label_repel()`. 
+
+```{r fig.height=6, fig.width=6}
+pd <- copy(fhimaps::norway_nuts3_map_b2020_insert_oslo_dt)
+q <- ggplot()
+q <- q + geom_polygon(
+  data = pd, 
+  mapping = aes(
+    x = long,
+    y = lat,
+    group = group,
+    fill = location_code
+  ),  
+  color="black",
+  size=0.1
+)
+q <- q + annotate(
+  "text",
+  x = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
+  y = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+  label = "Oslo"
+)
+q <- q + geom_label(
+  data = fhimaps::norway_nuts3_position_geolabels_b2020_default_dt,
+  mapping = aes(x = long, y = lat, label = location_code)
+  )
+# ggrepel::geom_label_repel() for avoiding overlap
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "")
+q
+
+```
+
+
+Labels can be easily added to other layouts, such as Oslo wards.
+
+```{r fig.height=6, fig.width=6}
+q <- ggplot(mapping = aes(x = long, y = lat))
+q <- q + geom_polygon(
+  data = fhimaps::oslo_ward_map_b2020_default_dt,
+  mapping = aes(group = group),
+  color = "black",
+  fill = "white",
+  size = 0.2
+)
+q <- q + geom_label(
+  data = fhimaps::oslo_ward_position_geolabels_b2020_default_dt,
+  mapping = aes(label = location_code),
+  color = "red",
+  size = 3,
+  label.size = 0.1,
+  label.r = grid::unit(0, "lines")
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q
+
+```
+
+### enrich plot with additional data 
+
+It is convenient to use `fhidata` package to enrich Norway and Oslo maps with external information, such as location name and population. We illustrate how to do it here. 
+
+
+```{r fig.height=6, fig.width=6}
+# enrich with population and location name
+dpop_2020 <- fhidata::norway_population_b2020[
+  year == '2020',
+  .(pop_total = sum(pop)),
+  keyby = location_code
+]
+
+# join, create label
+labels <- copy(fhimaps::norway_nuts3_position_geolabels_b2020_insert_oslo_dt)
+labels[
+  dpop_2020, 
+  on = "location_code",
+  pop_total := pop_total
+]
+labels[
+  fhidata::norway_locations_long_b2020, 
+  on = "location_code",
+  location_name := location_name
+]
+labels[, label := paste0(location_name, '\n', pop_total)]
+print(head(labels))
+
+# plot
+pd <- copy(fhimaps::norway_nuts3_map_b2020_insert_oslo_dt)
+q <- ggplot()
+q <- q + geom_polygon(
+  data = pd, 
+  mapping = aes(
+    x = long,
+    y = lat,
+    group = group,
+    fill = location_code
+  ),
+  color="black",
+  size=0.1
+)
+q <- q + annotate(
+  "text",
+  x = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
+  y = fhimaps::norway_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+  label = "Oslo"
+)
+q <- q + ggrepel::geom_label_repel(
+  data = labels,
+  mapping = aes(x = long, y = lat, label = label)
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q <- q + labs(title = "")
+q
+
+```
+
+
+```{r fig.height=6, fig.width=6}
+# enrich with population and location name
+dpop_2020 <- fhidata::norway_population_b2020[
+  year == '2020',
+  .(pop_total = sum(pop)),
+  keyby = location_code
+]
+
+# join, create label
+labels <- copy(fhimaps::oslo_ward_position_geolabels_b2020_default_dt)
+labels[
+  dpop_2020, 
+  on = "location_code",
+  pop_total := pop_total
+]
+labels[
+  fhidata::norway_locations_long_b2020, 
+  on = "location_code",
+  location_name := location_name
+]
+labels[, label := paste0(location_name, '\n', pop_total)]
+print(head(labels))
+
+q <- ggplot(mapping = aes(x = long, y = lat))
+q <- q + geom_polygon(
+  data = fhimaps::oslo_ward_map_b2020_default_dt,
+  mapping = aes(group = group),
+  color = "black",
+  fill = "white",
+  size = 0.2
+)
+q <- q + geom_label(
+  data = labels,
+  mapping = aes(label = label),
+  color = "red",
+  size = 3,
+  label.size = 0.1,
+  label.r = grid::unit(0, "lines")
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q
+
+```
+
+
+## `sf` for interactive maps
+
+We provide the option of how to use `sf` class object to create interactive maps. It requres the `leaflet` package. 
+
+```{r fig.height=6, fig.width=6}
+pd_county <- fhimaps::norway_nuts3_map_b2019_default_sf
+leaflet::leaflet(
+  pd_county,
+  options = leaflet::leafletOptions(preferCanvas = F)
+) %>% 
+  leaflet::addProviderTiles(leaflet::providers$Esri.WorldGrayCanvas) %>%
+  leaflet::addPolygons(
+   #  fillColor = ~ pal_not_censored(n_0_13_fixed_status_with_numbers),
+    weight = 0.3,
+    opacity = 1,
+    color = "black", fillColor = 'white',
+    fillOpacity = 0.9  )
+```
+
+
+
+
