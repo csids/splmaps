@@ -1,0 +1,48 @@
+---
+title: "Interactive maps"
+output: rmarkdown::html_vignette
+author: "Richard Aubrey White, Chi Zhang"
+date: "2021-01-15"
+vignette: >
+  %\VignetteIndexEntry{Interactive maps}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r setup}
+library(splmaps)
+library(ggplot2)
+library(data.table)
+library(magrittr)
+```
+
+
+## `sf` for interactive maps
+
+We provide the option of how to use `sf` class object to create interactive maps. It requres the `leaflet` package. 
+
+```{r fig.height=6, fig.width=6}
+pd_county <- splmaps::norway_nuts3_map_b2019_default_sf
+leaflet::leaflet(
+  pd_county,
+  options = leaflet::leafletOptions(preferCanvas = F)
+) %>% 
+  leaflet::addProviderTiles(leaflet::providers$Esri.WorldGrayCanvas) %>%
+  leaflet::addPolygons(
+   #  fillColor = ~ pal_not_censored(n_0_13_fixed_status_with_numbers),
+    weight = 0.3,
+    opacity = 1,
+    color = "black", fillColor = 'white',
+    fillOpacity = 0.9  )
+```
+

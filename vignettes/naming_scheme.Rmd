@@ -1,0 +1,88 @@
+---
+title: "Naming scheme"
+output: rmarkdown::html_vignette
+author: "Chi Zhang"
+date: "2021-01-15"
+vignette: >
+  %\VignetteIndexEntry{Naming scheme}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+The naming scheme has the following pattern: `scope_geogranularity_type_border_layout_Rclass`. 
+
+#### Scope
+This is what content the map data contains. Currently we focus on these 2 scopes: 
+
+* country (Norway)
+* city (Oslo)
+
+
+#### Geogranularity 
+
+This is the geographic granularity, which defines the border of county, municipality and ward. We follow the EU definition of territorial unit ([NUTS](https://ec.europa.eu/eurostat/web/nuts/nuts-maps), [LAU](https://ec.europa.eu/eurostat/web/nuts/local-administrative-units)) when applicable.
+
+* [NUTS3](https://ec.europa.eu/eurostat/documents/345175/7451602/2021-NUTS-3-map-NO.pdf): Nomenclature of Territorial Unit level 3. Equivalent to fylke (county) in Norway.  
+
+* LAU2: Local Administrative Unit level 2. Equivalent to kommune (municipality) in Norway. 
+
+* ward: district within a municipality. Bydel in Norwegian. So far we only have the data for Oslo.
+
+* xxx: only used for plotting `position_title`. (see [example](#norway-layout-insert-oslo))
+
+
+#### Type 
+
+The type of the data object to distinguish whether it's a geographical map or coordinate for label positions. 
+
+* map: map data, in either `data.table` or `sf` class.
+
+* position geolabels: geographical coordinates for the position of labels, e.g. "county03" or "Oslo".
+
+* position title (insert oslo): geographical coordinate for position of title. So far it's only for layout: `insert_oslo`. (see [example](#norway-layout-insert-oslo))
+
+
+
+
+
+#### Border 
+
+Due to recent redistricting, there exist multiple versions of county borders. We provide maps that match the borders in the following years: 
+
+* 2020: the current border, this map contains 11 counties. 
+
+* 2019: border before redistricting in 2020. This map contains 19 counties. 
+
+* 2017: border before redistricting in 2018. 
+
+More information on counties in Norway can be found [here](https://en.wikipedia.org/wiki/Counties_of_Norway#cite_note-13). 
+
+
+
+#### Layout
+
+Map layout, see [this section](#layout-options) for examples. 
+
+
+
+
+#### R class
+
+R class for the map object. 
+
+* `data.table`: applicable for maps and label/title coordinates.
+
+* `sf`: simple feature for spatial vector data. More on [sf](https://r-spatial.github.io/sf/articles/).
+
+
+
