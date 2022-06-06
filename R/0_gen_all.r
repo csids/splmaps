@@ -6,7 +6,7 @@ gen_data_all <- function(base_loc) {
   # on.exit(setwd(old_wd))
   # setwd(base_loc)
   # base_loc <- getwd()
-
+  . <- NULL
   location_code <- NULL
   long <- NULL
   lat <- NULL
