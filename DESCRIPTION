@@ -1,4 +1,4 @@
-Package: splmaps
+Package: csmaps
 Title: Preformatted Maps of Norway That Don't Need Geolibraries
 Version: 2022.6.8
 Authors@R: c(
@@ -11,8 +11,8 @@ Authors@R: c(
 Description: Preformatted maps of Norway that don't need geolibraries.
 Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
-URL: https://docs.sykdomsuplsen.no/splmaps, https://github.com/sykdomspulsen-org/splmaps
-BugReports: https://github.com/sykdomspulsen-org/splmaps/issues
+URL: https://www.csids.no/csmaps/, https://github.com/csids/csmaps
+BugReports: https://github.com/csids/csmaps/issues
 LazyData: true
 Imports: data.table,
     utils
