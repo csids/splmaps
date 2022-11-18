@@ -1,4 +1,4 @@
 library(testthat)
-library(splmaps)
+library(csmaps)
 
-test_check("splmaps")
+test_check("csmaps")

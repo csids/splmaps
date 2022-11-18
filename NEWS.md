@@ -1,13 +1,13 @@
-# splmaps 2022.6.8
+# csmaps 2022.6.8
 
 - Refactored the .rd files.
 
-# splmaps 2022.6.6
+# csmaps 2022.6.6
 
-- Migrated content from fhimaps to splmaps
+- Migrated content from fhimaps to csmaps
 
 - Updated documentation
 
-# splmaps 2020.2.17
+# csmaps 2020.2.17
 
 - Package is created (previously as fhimaps)

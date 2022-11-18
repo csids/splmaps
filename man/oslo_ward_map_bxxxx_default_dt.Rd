@@ -34,14 +34,14 @@ Borders provided for 2020.
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))
 q <- q + geom_polygon(
-  data = splmaps::oslo_ward_map_b2020_default_dt,
+  data = csmaps::oslo_ward_map_b2020_default_dt,
   mapping = aes(group = group, fill = location_code),
   color = "black",
   fill = "white",
   size = 0.2
 )
 q <- q + geom_label(
-  data = splmaps::oslo_ward_position_geolabels_b2020_default_dt,
+  data = csmaps::oslo_ward_position_geolabels_b2020_default_dt,
   mapping = aes(label = location_code),
   color = "red"
 )

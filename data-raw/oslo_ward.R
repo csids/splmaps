@@ -66,7 +66,7 @@ gen_oslo_ward_map <- function(return_sf=FALSE) {
 
 gen_oslo_ward_position_geolabels <- function(x_year_end) {
 
-  # d_oslo <- splmaps::oslo_ward_map_b2020_default_dt
+  # d_oslo <- csmaps::oslo_ward_map_b2020_default_dt
   # d_oslo[, mean_long := mean(long), by = location_code]
   # d_oslo[, mean_lat := mean(lat), by = location_code]
   # d_oslo_label <- d_oslo[, .(location_code, mean_long, mean_lat)] %>% unique

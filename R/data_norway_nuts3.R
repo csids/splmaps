@@ -25,7 +25,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2020_default_dt,
+#'   data = csmaps::nor_nuts3_map_b2020_default_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -39,7 +39,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2019_default_dt,
+#'   data = csmaps::nor_nuts3_map_b2019_default_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -53,7 +53,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2017_default_dt,
+#'   data = csmaps::nor_nuts3_map_b2017_default_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -129,7 +129,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2020_insert_oslo_dt,
+#'   data = csmaps::nor_nuts3_map_b2020_insert_oslo_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -137,8 +137,8 @@
 #' )
 #' q <- q + annotate(
 #'   "text",
-#'   x = splmaps::nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
-#'   y = splmaps::nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
+#'   x = csmaps::nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$long,
+#'   y = csmaps::nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt$lat,
 #'   label = "Oslo"
 #' )
 #' q <- q + theme_void()
@@ -149,7 +149,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2019_insert_oslo_dt,
+#'   data = csmaps::nor_nuts3_map_b2019_insert_oslo_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -157,8 +157,8 @@
 #' )
 #' q <- q + annotate(
 #'   "text",
-#'   x = splmaps::nor_xxx_position_title_insert_oslo_b2019_insert_oslo_dt$long,
-#'   y = splmaps::nor_xxx_position_title_insert_oslo_b2019_insert_oslo_dt$lat,
+#'   x = csmaps::nor_xxx_position_title_insert_oslo_b2019_insert_oslo_dt$long,
+#'   y = csmaps::nor_xxx_position_title_insert_oslo_b2019_insert_oslo_dt$lat,
 #'   label = "Oslo"
 #' )
 #' q <- q + theme_void()
@@ -169,7 +169,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2017_insert_oslo_dt,
+#'   data = csmaps::nor_nuts3_map_b2017_insert_oslo_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
@@ -177,8 +177,8 @@
 #' )
 #' q <- q + annotate(
 #'   "text",
-#'   x = splmaps::nor_xxx_position_title_insert_oslo_b2017_insert_oslo_dt$long,
-#'   y = splmaps::nor_xxx_position_title_insert_oslo_b2017_insert_oslo_dt$lat,
+#'   x = csmaps::nor_xxx_position_title_insert_oslo_b2017_insert_oslo_dt$long,
+#'   y = csmaps::nor_xxx_position_title_insert_oslo_b2017_insert_oslo_dt$lat,
 #'   label = "Oslo"
 #' )
 #' q <- q + theme_void()
@@ -226,7 +226,7 @@
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
-#'   data = splmaps::nor_nuts3_map_b2020_split_dt,
+#'   data = csmaps::nor_nuts3_map_b2020_split_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",

@@ -50,7 +50,7 @@ Borders for 2020 and 2019 are provided.
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))
 q <- q + geom_polygon(
-  data = splmaps::nor_lau2_map_b2020_default_dt,
+  data = csmaps::nor_lau2_map_b2020_default_dt,
   mapping = aes(group = group),
   color = "black",
   fill = "white",
@@ -64,7 +64,7 @@ q
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))
 q <- q + geom_polygon(
-  data = splmaps::nor_lau2_map_b2019_default_dt,
+  data = csmaps::nor_lau2_map_b2019_default_dt,
   mapping = aes(group = group),
   color = "black",
   fill = "white",

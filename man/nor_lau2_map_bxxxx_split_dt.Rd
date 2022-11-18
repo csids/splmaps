@@ -32,7 +32,7 @@ Borders for 2020 are provided.
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))
 q <- q + geom_polygon(
-  data = splmaps::nor_lau2_map_b2020_split_dt,
+  data = csmaps::nor_lau2_map_b2020_split_dt,
   mapping = aes(group = group),
   color = "black",
   fill = "white",

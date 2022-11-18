@@ -46,7 +46,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = splmaps::world_map, color = "black", fill = "white", size = 0.2)
+# #' q <- q + geom_polygon(data = csmaps::world_map, color = "black", fill = "white", size = 0.2)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",
@@ -81,7 +81,7 @@
 #   iso3 <- readxl::read_excel(system.file(
 #     "rawdata",
 #     "iso3.xlsx",
-#     package = "splmaps"
+#     package = "csmaps"
 #   ))
 #   setDT(iso3)
 #   iso3
@@ -93,7 +93,7 @@
 #       "rawdata",
 #       "CNTR_RG_01M_2016_4326",
 #       "CNTR_RG_01M_2016_4326.shp",
-#       package = "splmaps"
+#       package = "csmaps"
 #     ),
 #     as_tibble = T
 #   )
