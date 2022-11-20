@@ -1,10 +1,10 @@
 ---
-title: "Introduction to csmaps"
+title: "csmaps"
 output: rmarkdown::html_vignette
 author: "Richard Aubrey White, Chi Zhang"
 date: "2021-01-15"
 vignette: >
-  %\VignetteIndexEntry{Introduction to csmaps}
+  %\VignetteIndexEntry{csmaps}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -18,10 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 `csmaps` is a package for map visualisation developed by researchers at Norwegian Institute of Public Health (Folkehelseinstituttet, FHI). The package contains map data for Norway at different levels geographic granularity and layout. 
-
-
 
 ```{r setup}
 library(csmaps)
@@ -30,9 +27,7 @@ library(data.table)
 library(magrittr)
 ```
 
-
 A map with the default layout can be made in this way. For more advanced *layout* and *customization*, see the relevant documentation vignettes. 
-
 
 ```{r fig.height=6, fig.width=6}
 pd <- copy(csmaps::nor_lau2_map_b2020_default_dt)
@@ -44,12 +39,4 @@ q <- q + coord_quickmap()
 q <- q + labs(title = "Default layout")
 q
 ```
-
-
-
-
-
-
-
-
 
