@@ -182,29 +182,24 @@ q
 
 ## Enrich plot with additional data 
 
-It is convenient to use `spldata` package to enrich Norway and Oslo maps with external information, such as location name and population. We illustrate how to do it here. 
+It is convenient to use `csdata` package to enrich Norway and Oslo maps with external information, such as location name and population. We illustrate how to do it here. 
 
 
 ### Add county name and population to Norway map
 
 ```{r fig.height=6, fig.width=6}
 # enrich with population and location name
-dpop_2020 <- fhidata::norway_population_b2020[
-  year == '2020',
-  .(pop_total = sum(pop)),
-  keyby = location_code
-]
-
+dpop_2020 <- csdata::nor_population_by_age_cats()[calyear==2020]
 
 # join, create label
 labels <- copy(csmaps::nor_nuts3_position_geolabels_b2020_insert_oslo_dt)
 labels[
   dpop_2020, 
   on = "location_code",
-  pop_total := pop_total
+  pop_total := pop_jan1_n
 ]
 labels[
-  spldata::nor_locations_names(), 
+  csdata::nor_locations_names(), 
   on = "location_code",
   location_name := location_name
 ]
@@ -248,21 +243,17 @@ q
 
 ```{r fig.height=6, fig.width=6}
 # enrich with population and location name
-dpop_2020 <- fhidata::norway_population_b2020[
-  year == '2020',
-  .(pop_total = sum(pop)),
-  keyby = location_code
-]
+dpop_2020 <- csdata::nor_population_by_age_cats()[calyear==2020]
 
 # join, create label
 labels <- copy(csmaps::oslo_ward_position_geolabels_b2020_default_dt)
 labels[
   dpop_2020, 
   on = "location_code",
-  pop_total := pop_total
+  pop_total := pop_jan1_n
 ]
 labels[
-  spldata::nor_locations_names(), 
+  csdata::nor_locations_names(), 
   on = "location_code",
   location_name := location_name
 ]
