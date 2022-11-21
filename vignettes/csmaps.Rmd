@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`csmaps` is a package for map visualisation developed by researchers at Norwegian Institute of Public Health (Folkehelseinstituttet, FHI). The package contains map data for Norway at different levels geographic granularity and layout. 
+`csmaps` is a package for map visualisation developed by members of [CSIDS](https://www.csids.no). The package contains map data for Norway at different levels geographic granularity and layout. 
 
 ```{r setup}
 library(csmaps)
@@ -30,10 +30,19 @@ library(magrittr)
 A map with the default layout can be made in this way. For more advanced *layout* and *customization*, see the relevant documentation vignettes. 
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_lau2_map_b2020_default_dt)
+pd <- copy(csmaps::nor_municip_map_b2020_default_dt)
 q <- ggplot()
-q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group), 
-                      color="black", fill="white", size=0.1)
+q <- q + geom_polygon(
+  data = pd,
+  aes( 
+    x = long,
+    y = lat,
+    group = group
+  ), 
+  color="black", 
+  fill="white",
+  size=0.1
+)
 q <- q + theme_void()
 q <- q + coord_quickmap()
 q <- q + labs(title = "Default layout")

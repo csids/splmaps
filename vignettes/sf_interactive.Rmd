@@ -18,20 +18,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ```{r setup}
 library(ggplot2)
 library(data.table)
 library(magrittr)
 ```
 
-
 ## `sf` for interactive maps
 
 We provide the option of how to use `sf` class object to create interactive maps. It requres the `leaflet` package. 
 
 ```{r fig.height=6, fig.width=6}
-pd_county <- csmaps::nor_nuts3_map_b2020_default_sf
+pd_county <- csmaps::nor_county_map_b2020_default_sf
 leaflet::leaflet(
   pd_county,
   options = leaflet::leafletOptions(preferCanvas = F)
@@ -40,7 +38,8 @@ leaflet::leaflet(
   leaflet::addPolygons(
     weight = 0.3,
     opacity = 1,
-    color = "black", fillColor = "white",
+    color = "black", 
+    fillColor = "white",
     fillOpacity = 0.9
   )
 ```
