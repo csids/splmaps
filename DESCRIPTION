@@ -1,6 +1,6 @@
 Package: csmaps
-Title: Preformatted Maps of Norway That Don't Need Geolibraries
-Version: 2022.6.8
+Title: Preformatted Maps of Norway that Don't Need Geolibraries
+Version: 2022.11.25
 Authors@R: c(
   person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-6747-1726")
@@ -8,7 +8,11 @@ Authors@R: c(
   person("Chi", "Zhang", email = "andreachizhang@yahoo.com", role = c("aut"), 
     comment = c(ORCID = "0000-0003-0501-5909"))
   )
-Description: Preformatted maps of Norway that don't need geolibraries.
+Description: Provides datasets containing preformatted maps of Norway at
+    the county, municipality, and ward (Oslo only) level for redistricting in 
+    2017, 2018, and 2020. Multiple layouts are provided (normal, split, 
+    and with an insert for Oslo), allowing the user to rapidly create choropleth
+    maps of Norway without any geolibraries.
 Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 URL: https://www.csids.no/csmaps/, https://github.com/csids/csmaps

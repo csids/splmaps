@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 Makefile
 _pkgdown.yml
-cran-commends.md
+cran-comments.md
 license.md
 ^data-raw$
+^CRAN-SUBMISSION$
