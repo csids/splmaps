@@ -21,8 +21,10 @@ New submission
 
 Possibly misspelled words in DESCRIPTION:
   Geolibraries (2:52)
-  Preformatted (2:8, 11:14)
-  geolibraries (11:58)
+  Preformatted (2:8)
+  choropleth (14:71)
+  geolibraries (15:32)
+  preformatted (11:43)
 
 ## Downstream dependencies
 

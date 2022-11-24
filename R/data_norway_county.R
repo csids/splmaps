@@ -18,8 +18,6 @@
 #' \item{group}{Needs to be used as 'group' aesthetic in ggplot2.}
 #' \item{location_code}{Location code (municipality code).}
 #' }
-#' @source \url{https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2020-(klippet-etter-kyst)/7408853f-eb7d-48dd-bb6c-80c7e80f7392}
-#' @source \url{https://kartkatalog.geonorge.no/metadata/uuid/cb02ab77-d3e6-4500-8a92-ea67367e7734}
 #' @examples
 #' # 2020 borders
 #' library(ggplot2)
@@ -92,8 +90,6 @@
 #' \item{geometry}{Multipolygon}
 #' \item{location_code}{Location code (municipality code).}
 #' }
-#' @source \url{https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2020-(klippet-etter-kyst)/7408853f-eb7d-48dd-bb6c-80c7e80f7392}
-#' @source \url{https://kartkatalog.geonorge.no/metadata/uuid/cb02ab77-d3e6-4500-8a92-ea67367e7734}
 #' @name nor_county_map_bxxxx_default_sf
 "nor_county_map_b2020_default_sf"
 
@@ -122,8 +118,6 @@
 #' \item{group}{Needs to be used as 'group' aesthetic in ggplot2.}
 #' \item{location_code}{Location code (county code).}
 #' }
-#' @source \url{https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2020-(klippet-etter-kyst)/7408853f-eb7d-48dd-bb6c-80c7e80f7392}
-#' @source \url{https://kartkatalog.geonorge.no/metadata/uuid/cb02ab77-d3e6-4500-8a92-ea67367e7734}
 #' @examples
 #' # 2020 borders
 #' library(ggplot2)
@@ -221,7 +215,6 @@
 #' \item{group}{Needs to be used as 'group' aesthetic in ggplot2.}
 #' \item{location_code}{Location code (municipality code).}
 #' }
-#' @source \url{https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2020-(klippet-etter-kyst)/7408853f-eb7d-48dd-bb6c-80c7e80f7392}
 #' @examples
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))

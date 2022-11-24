@@ -3,7 +3,7 @@
 
 ## Overview 
 
-[csmaps](https://www.csids.no/csmaps/) helps create preformatted maps of Norway that generally do not need geolibraries. It helps public health reporting purposes for different geographic levels in Norway.
+[csmaps](https://www.csids.no/csmaps/) provides preformatted maps of Norway that generally do not need geolibraries. It helps public health reporting purposes for different geographic levels in Norway.
 
 The following geographic granularities are included: 
 

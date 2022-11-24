@@ -29,11 +29,6 @@ An object of class \code{data.table} (inherits from \code{data.frame}) with 18 r
 
 An object of class \code{data.table} (inherits from \code{data.frame}) with 19 rows and 3 columns.
 }
-\source{
-\url{https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2020-(klippet-etter-kyst)/7408853f-eb7d-48dd-bb6c-80c7e80f7392}
-
-\url{https://kartkatalog.geonorge.no/metadata/uuid/cb02ab77-d3e6-4500-8a92-ea67367e7734}
-}
 \usage{
 nor_county_map_b2020_insert_oslo_dt
 
