@@ -6,7 +6,10 @@ Authors@R: c(
     comment = c(ORCID = "0000-0002-6747-1726")
   ),
   person("Chi", "Zhang", email = "andreachizhang@yahoo.com", role = c("aut"), 
-    comment = c(ORCID = "0000-0003-0501-5909"))
+    comment = c(ORCID = "0000-0003-0501-5909")
+  ),
+  person("Geonorge", role = c("ctb")),
+  person("CSIDS", email = "hello@csids.no", role = c("cph"))
   )
 Description: Provides datasets containing preformatted maps of Norway at
     the county, municipality, and ward (Oslo only) level for redistricting in 
