@@ -1,8 +1,6 @@
 # Resubmission
 
-* Included more information in the Description field.
-* This is only a data package, so no information about methods are included.
-* Removed the empty function x() (which was included by accident in the previous submission).
+* Included CSIDS and Geonorge in Authors@R as requested.
 
 ## Test environments
 
