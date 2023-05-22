@@ -47,7 +47,8 @@ The type of the data object to distinguish whether it's a geographical map or co
 
 Due to recent redistricting, there exist multiple versions of county borders. We provide maps that match the borders in the following years: 
 
-- 2020: The current border, this map contains 11 counties. 
+- 2024: The current border, this map contains 15 counties. 
+- 2020: Border before redistricting in 2024. This map contains 11 counties.
 - 2019: Border before redistricting in 2020. This map contains 18 counties. 
 - 2017: Border before redistricting in 2018. This map contains 19 counties.
 
