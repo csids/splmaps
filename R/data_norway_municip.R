@@ -70,6 +70,9 @@
 "nor_municip_map_b2019_default_dt"
 
 #' @rdname nor_municip_map_bxxxx_default_dt
+"nor_municip_position_geolabels_b2024_default_dt"
+
+#' @rdname nor_municip_map_bxxxx_default_dt
 "nor_municip_position_geolabels_b2020_default_dt"
 
 #' @rdname nor_municip_map_bxxxx_default_dt

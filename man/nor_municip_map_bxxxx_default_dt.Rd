@@ -6,6 +6,7 @@
 \alias{nor_municip_map_b2024_default_dt}
 \alias{nor_municip_map_b2020_default_dt}
 \alias{nor_municip_map_b2019_default_dt}
+\alias{nor_municip_position_geolabels_b2024_default_dt}
 \alias{nor_municip_position_geolabels_b2020_default_dt}
 \alias{nor_municip_position_geolabels_b2019_default_dt}
 \title{Maps of Norwegian municipalities in data.table format}
@@ -24,6 +25,8 @@ An object of class \code{data.table} (inherits from \code{data.frame}) with 3170
 
 An object of class \code{data.table} (inherits from \code{data.frame}) with 356 rows and 3 columns.
 
+An object of class \code{data.table} (inherits from \code{data.frame}) with 356 rows and 3 columns.
+
 An object of class \code{data.table} (inherits from \code{data.frame}) with 422 rows and 3 columns.
 }
 \usage{
@@ -32,6 +35,8 @@ nor_municip_map_b2024_default_dt
 nor_municip_map_b2020_default_dt
 
 nor_municip_map_b2019_default_dt
+
+nor_municip_position_geolabels_b2024_default_dt
 
 nor_municip_position_geolabels_b2020_default_dt
 
