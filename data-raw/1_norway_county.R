@@ -4,7 +4,7 @@ gen_nor_county_position_geolabels <- function(x_year_end, insert = F) {
   location_code <- NULL
   long <- NULL
   lat <- NULL
-  stopifnot(x_year_end %in% c("2017", "2019", "2020"))
+  stopifnot(x_year_end %in% c("2017", "2019", "2020", "2024"))
 
   if (x_year_end == 2017) {
     label_positions <- data.table(
@@ -108,12 +108,92 @@ gen_nor_county_position_geolabels <- function(x_year_end, insert = F) {
         lat = 64.15
       )
     ))
-    # fix oslo insert if desired
-    if(insert){
-      label_positions[location_code=="county03", long := 20.85]
-      label_positions[location_code=="county03", lat := 62]
-    }
+  } else if (x_year_end == 2024) {
+    label_positions <- rbindlist(list(
+      data.table(
+        location_code = "county_nor31", # Østfold
+        long = 11.266137,
+        lat = 59.33375
+      ),
+      data.table(
+        location_code = "county_nor32", # Akershus
+        long = 11.2,
+        lat = 60.03851
+      ),
+      data.table(
+        location_code = "county_nor33", # Buskerud
+        long = 8.85,
+        lat = 60.60
+      ),
+      data.table(
+        location_code = "county_nor03",
+        long = 9.3,
+        lat = 60.3
+      ),
+      data.table(
+        location_code = "county_nor34",
+        long = 11.0,
+        lat = 61.86886
+      ),
+      data.table(
+        location_code = "county_nor39", # Vestfold
+        long = 10,
+        lat = 59.32481
+      ),
+      data.table(
+        location_code = "county_nor40", # Telemark
+        long = 8.496352,
+        lat = 59.47989
+      ),
+      data.table(
+        location_code = "county_nor42",
+        long = 7.8,
+        lat = 58.3
+      ),
+      data.table(
+        location_code = "county_nor11",
+        long = 6.1,
+        lat = 58.7
+      ),
+      data.table(
+        location_code = "county_nor46",
+        long = 6.5,
+        lat = 61.45
+      ),
+      data.table(
+        location_code = "county_nor15",
+        long = 7.8,
+        lat = 62.5
+      ),
+      data.table(
+        location_code = "county_nor18",
+        long = 14.8,
+        lat = 66.75
+      ),
+      data.table(
+        location_code = "county_nor55", # Troms
+        long = 19.244275,
+        lat = 68.9
+      ),
+      data.table(
+        location_code = "county_nor56", # Finnmark
+        long = 24.7,
+        lat = 69.6
+      ),
+      data.table(
+        location_code = "county_nor50",
+        long = 12.0,
+        lat = 64.15
+      )
+    ))
   }
+
+  # fix oslo insert if desired
+  if(insert){
+    label_positions[location_code=="county_nor03", long := 20.85]
+    label_positions[location_code=="county_nor03", lat := 62]
+  }
+
 
   return(label_positions)
 }
@@ -121,7 +201,7 @@ gen_nor_county_position_geolabels <- function(x_year_end, insert = F) {
 # insert for oslo/akershus?
 # split the country in 2?
 gen_nor_county_map <- function(x_year_end, insert = FALSE, split = FALSE, return_sf=FALSE) {
-  stopifnot(x_year_end %in% c("2017", "2019", "2020"))
+  stopifnot(x_year_end %in% c("2017", "2019", "2020", "2024"))
 
   . <- NULL
   id <- NULL
@@ -156,6 +236,13 @@ gen_nor_county_map <- function(x_year_end, insert = FALSE, split = FALSE, return
     )
     spdf$navn <- NULL
     spdf_simple <- rgeos::gSimplify(spdf, tol=2000, topologyPreserve = F)
+  } else if (x_year_end == 2024) {
+    spdf <- geojsonio::geojson_read(
+      fs::path("data-raw", "files", "Fylker24.geojson"),
+      what = "sp"
+    )
+    spdf$navn <- NULL
+    spdf_simple <- rgeos::gSimplify(spdf, tol=2000, topologyPreserve = F)
   }
 
   if(return_sf){
@@ -166,7 +253,8 @@ gen_nor_county_map <- function(x_year_end, insert = FALSE, split = FALSE, return
   }
 
   spdf_simple$fylkesnummer <- spdf$fylkesnummer
-  spdf_fortified <- broom::tidy(spdf_simple, region = "fylkesnummer")
+  # spdf_fortified <- broom::tidy(spdf_simple, region = "fylkesnummer")
+  spdf_fortified <- ggplot2::fortify(spdf_simple, region="fylkesnummer")
   setDT(spdf_fortified)
 
   # convert from UTM to latlong
@@ -194,20 +282,20 @@ gen_nor_county_map <- function(x_year_end, insert = FALSE, split = FALSE, return
   }
 
   if (split) {
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), long := (long - mean(long)) * 0.60 + mean(long) - 17]
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), lat := (lat - mean(lat)) * 0.70 + mean(lat) - 5.5]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), long := (long - mean(long)) * 0.60 + mean(long) - 17]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), lat := (lat - mean(lat)) * 0.70 + mean(lat) - 5.5]
 
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), long_center := mean(long)]
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), lat_center := mean(lat)]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), long_center := mean(long)]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), lat_center := mean(lat)]
 
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), long_diff := long - long_center]
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), lat_diff := lat - lat_center]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), long_diff := long - long_center]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), lat_diff := lat - lat_center]
 
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), long_diff := long_diff * cos(-0.05 * pi) + lat_diff * sin(-0.05 * pi)]
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), lat_diff := -1 * long_diff * sin(-0.05 * pi) + lat_diff * cos(-0.05 * pi)]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), long_diff := long_diff * cos(-0.05 * pi) + lat_diff * sin(-0.05 * pi)]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), lat_diff := -1 * long_diff * sin(-0.05 * pi) + lat_diff * cos(-0.05 * pi)]
 
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), long := long_diff + long_center]
-    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54"), lat := lat_diff + lat_center]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), long := long_diff + long_center]
+    spdf_fortified[location_code %in% c("county_nor18", "county_nor19", "county_nor20", "county_nor54", "county_nor55", "county_nor56"), lat := lat_diff + lat_center]
 
     spdf_fortified[, long_center := NULL]
     spdf_fortified[, lat_center := NULL]
@@ -224,6 +312,12 @@ gen_nor_county_map <- function(x_year_end, insert = FALSE, split = FALSE, return
 
 # ***************************** #
 # map default ----
+
+## 2024 ----
+nor_county_map_b2024_default_dt <- gen_nor_county_map(x_year_end=2024)
+usethis::use_data(nor_county_map_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
+nor_county_map_b2024_default_sf <- gen_nor_county_map(x_year_end=2024, return_sf = T)
+usethis::use_data(nor_county_map_b2024_default_sf, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 nor_county_map_b2020_default_dt <- gen_nor_county_map(x_year_end=2020)
@@ -246,6 +340,10 @@ usethis::use_data(nor_county_map_b2017_default_sf, overwrite = TRUE, version = 3
 # ***************************** #
 # map insert oslo ----
 
+## 2024 ----
+nor_county_map_b2024_insert_oslo_dt <- gen_nor_county_map(x_year_end=2024, insert = T)
+usethis::use_data(nor_county_map_b2024_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 nor_county_map_b2020_insert_oslo_dt <- gen_nor_county_map(x_year_end=2020, insert = T)
 usethis::use_data(nor_county_map_b2020_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
@@ -261,12 +359,20 @@ usethis::use_data(nor_county_map_b2017_insert_oslo_dt, overwrite = TRUE, version
 # ***************************** #
 # map split ----
 
+## 2024 ----
+nor_county_map_b2024_split_dt <- gen_nor_county_map(x_year_end=2024, split=T)
+usethis::use_data(nor_county_map_b2024_split_dt, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 nor_county_map_b2020_split_dt <- gen_nor_county_map(x_year_end=2020, split=T)
 usethis::use_data(nor_county_map_b2020_split_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 # ***************************** #
 # labels default ----
+
+## 2024 ----
+nor_county_position_geolabels_b2024_default_dt <- gen_nor_county_position_geolabels(x_year_end = 2024)
+usethis::use_data(nor_county_position_geolabels_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 nor_county_position_geolabels_b2020_default_dt <- gen_nor_county_position_geolabels(x_year_end = 2020)
@@ -282,6 +388,10 @@ usethis::use_data(nor_county_position_geolabels_b2017_default_dt, overwrite = TR
 
 # ***************************** #
 # labels insert oslo ----
+
+## 2024 ----
+nor_county_position_geolabels_b2024_insert_oslo_dt <- gen_nor_county_position_geolabels(x_year_end = 2024, insert = T)
+usethis::use_data(nor_county_position_geolabels_b2024_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 nor_county_position_geolabels_b2020_insert_oslo_dt <- gen_nor_county_position_geolabels(x_year_end = 2020, insert = T)

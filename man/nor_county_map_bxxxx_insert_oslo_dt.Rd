@@ -3,9 +3,11 @@
 \docType{data}
 \name{nor_county_map_bxxxx_insert_oslo_dt}
 \alias{nor_county_map_bxxxx_insert_oslo_dt}
+\alias{nor_county_map_b2024_insert_oslo_dt}
 \alias{nor_county_map_b2020_insert_oslo_dt}
 \alias{nor_county_map_b2019_insert_oslo_dt}
 \alias{nor_county_map_b2017_insert_oslo_dt}
+\alias{nor_county_position_geolabels_b2024_insert_oslo_dt}
 \alias{nor_county_position_geolabels_b2020_insert_oslo_dt}
 \alias{nor_county_position_geolabels_b2019_insert_oslo_dt}
 \alias{nor_county_position_geolabels_b2017_insert_oslo_dt}
@@ -19,9 +21,13 @@
 \item{location_code}{Location code (county code).}
 }
 
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4493 rows and 5 columns.
+
 An object of class \code{data.table} (inherits from \code{data.frame}) with 4736 rows and 5 columns.
 
 An object of class \code{data.table} (inherits from \code{data.frame}) with 4545 rows and 5 columns.
+
+An object of class \code{data.table} (inherits from \code{data.frame}) with 15 rows and 3 columns.
 
 An object of class \code{data.table} (inherits from \code{data.frame}) with 11 rows and 3 columns.
 
@@ -30,11 +36,15 @@ An object of class \code{data.table} (inherits from \code{data.frame}) with 18 r
 An object of class \code{data.table} (inherits from \code{data.frame}) with 19 rows and 3 columns.
 }
 \usage{
+nor_county_map_b2024_insert_oslo_dt
+
 nor_county_map_b2020_insert_oslo_dt
 
 nor_county_map_b2019_insert_oslo_dt
 
 nor_county_map_b2017_insert_oslo_dt
+
+nor_county_position_geolabels_b2024_insert_oslo_dt
 
 nor_county_position_geolabels_b2020_insert_oslo_dt
 
@@ -48,9 +58,30 @@ We conveniently package map datasets for Norwegian counties
 libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 }
 \details{
-Borders for 2020, 2019, and 2017 are provided.
+Borders for 2024, 2020, 2019, and 2017 are provided.
 }
 \examples{
+# 2024 borders
+library(ggplot2)
+q <- ggplot(mapping = aes(x = long, y = lat))
+q <- q + geom_polygon(
+  data = csmaps::nor_county_map_b2024_insert_oslo_dt,
+  mapping = aes(group = group),
+  color = "black",
+  fill = "white",
+  size = 0.2
+)
+q <- q + annotate(
+  "text",
+  x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
+  y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
+  label = "Oslo"
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q
+
+
 # 2020 borders
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))

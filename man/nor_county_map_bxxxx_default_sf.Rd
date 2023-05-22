@@ -3,6 +3,7 @@
 \docType{data}
 \name{nor_county_map_bxxxx_default_sf}
 \alias{nor_county_map_bxxxx_default_sf}
+\alias{nor_county_map_b2024_default_sf}
 \alias{nor_county_map_b2020_default_sf}
 \alias{nor_county_map_b2019_default_sf}
 \alias{nor_county_map_b2017_default_sf}
@@ -13,11 +14,15 @@
 \item{location_code}{Location code (municipality code).}
 }
 
+An object of class \code{sf} (inherits from \code{data.frame}) with 11 rows and 2 columns.
+
 An object of class \code{sf} (inherits from \code{data.frame}) with 18 rows and 2 columns.
 
 An object of class \code{sf} (inherits from \code{data.frame}) with 19 rows and 2 columns.
 }
 \usage{
+nor_county_map_b2024_default_sf
+
 nor_county_map_b2020_default_sf
 
 nor_county_map_b2019_default_sf
@@ -28,6 +33,6 @@ nor_county_map_b2017_default_sf
 This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 }
 \details{
-Borders for 2020, 2019, and 2017 are provided.
+Borders for 2024, 2020, 2019, and 2017 are provided.
 }
 \keyword{datasets}

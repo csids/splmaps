@@ -32,6 +32,6 @@ Suggests: testthat,
     leaflet,
     sf,
     csdata
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Encoding: UTF-8
