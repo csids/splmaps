@@ -31,7 +31,7 @@ Suggests: testthat,
     ggrepel,
     leaflet,
     sf,
-    csdata
+    csdata (>= 2023.5.22)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Encoding: UTF-8
