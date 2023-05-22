@@ -24,11 +24,14 @@
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
 #' q
-#' @rdname nor_nuts3_map_bxxxx_insert_oslo_dt
+#' @rdname nor_xxx_position_title_insert_oslo_bxxxx_insert_oslo_dt
+"nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt"
+
+#' @rdname nor_xxx_position_title_insert_oslo_bxxxx_insert_oslo_dt
 "nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt"
 
-#' @rdname nor_nuts3_map_bxxxx_insert_oslo_dt
+#' @rdname nor_xxx_position_title_insert_oslo_bxxxx_insert_oslo_dt
 "nor_xxx_position_title_insert_oslo_b2019_insert_oslo_dt"
 
-#' @rdname nor_nuts3_map_bxxxx_insert_oslo_dt
+#' @rdname nor_xxx_position_title_insert_oslo_bxxxx_insert_oslo_dt
 "nor_xxx_position_title_insert_oslo_b2017_insert_oslo_dt"

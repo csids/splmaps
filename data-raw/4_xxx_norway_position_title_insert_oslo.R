@@ -1,7 +1,7 @@
 library(data.table)
 
 gen_nor_xxx_position_title_insert_oslo <- function(x_year_end) {
-  stopifnot(x_year_end %in% c("2017", "2019", "2020"))
+  stopifnot(x_year_end %in% c("2017", "2019", "2020", "2024"))
 
   label_positions <- data.table(
     long = c(
@@ -14,6 +14,10 @@ gen_nor_xxx_position_title_insert_oslo <- function(x_year_end) {
 
   return(label_positions)
 }
+
+# 2024 insert label
+nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt <- gen_nor_xxx_position_title_insert_oslo(x_year_end = 2024)
+usethis::use_data(nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 # 2020 insert label
 nor_xxx_position_title_insert_oslo_b2020_insert_oslo_dt <- gen_nor_xxx_position_title_insert_oslo(x_year_end = 2020)
