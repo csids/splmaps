@@ -1,6 +1,6 @@
 # Version 2023.5.22
 
-- Included county maps for 2024 borders.
+- Included maps for 2024 borders.
 
 # Version 2022.6.8
 

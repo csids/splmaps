@@ -8,7 +8,7 @@
 #' (taken from Geonorge) that can be used in ggplot2 without needing any geo
 #' libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders for 2020 and 2019 are provided.
+#' Borders for 2024, 2020, and 2019 are provided.
 #'
 #' @format
 #' \describe{
@@ -19,6 +19,20 @@
 #' \item{location_code}{Location code (municipality code).}
 #' }
 #' @examples
+#' # 2024 borders
+#' library(ggplot2)
+#' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + geom_polygon(
+#'   data = csmaps::nor_municip_map_b2024_default_dt,
+#'   mapping = aes(group = group),
+#'   color = "black",
+#'   fill = "white",
+#'   linewidth = 0.2
+#' )
+#' q <- q + theme_void()
+#' q <- q + coord_quickmap()
+#' q
+#'
 #' # 2020 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
@@ -27,7 +41,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -41,11 +55,14 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
 #' q
+#' @name nor_municip_map_bxxxx_default_dt
+"nor_municip_map_b2024_default_dt"
+
 #' @name nor_municip_map_bxxxx_default_dt
 "nor_municip_map_b2020_default_dt"
 
@@ -63,13 +80,16 @@
 #'
 #' This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders for 2020 and 2019 are provided.
+#' Borders for 2024, 2020, and 2019 are provided.
 #'
 #' @format
 #' \describe{
 #' \item{geometry}{Multipolygon}
 #' \item{location_code}{Location code (municipality code).}
 #' }
+#' @name nor_municip_map_bxxxx_default_sf
+"nor_municip_map_b2024_default_sf"
+
 #' @name nor_municip_map_bxxxx_default_sf
 "nor_municip_map_b2020_default_sf"
 
@@ -85,7 +105,7 @@
 #' (taken from Geonorge) that can be used in ggplot2 without needing any geo
 #' libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders for 2020 and 2019 are provided.
+#' Borders for 2024, 2020, and 2019 are provided.
 #'
 #' @format
 #' \describe{
@@ -96,6 +116,26 @@
 #' \item{location_code}{Location code (county code).}
 #' }
 #' @examples
+#' # 2024 borders
+#' library(ggplot2)
+#' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + geom_polygon(
+#'   data = csmaps::nor_municip_map_b2024_insert_oslo_dt,
+#'   mapping = aes(group = group),
+#'   color = "black",
+#'   fill = "white",
+#'   linewidth = 0.2
+#' )
+#' q <- q + annotate(
+#'   "text",
+#'   x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
+#'   y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
+#'   label = "Oslo"
+#' )
+#' q <- q + theme_void()
+#' q <- q + coord_quickmap()
+#' q
+#'
 #' # 2020 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
@@ -104,7 +144,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -124,7 +164,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -136,10 +176,16 @@
 #' q <- q + coord_quickmap()
 #' q
 #' @name nor_municip_map_bxxxx_insert_oslo_dt
+"nor_municip_map_b2024_insert_oslo_dt"
+
+#' @name nor_municip_map_bxxxx_insert_oslo_dt
 "nor_municip_map_b2020_insert_oslo_dt"
 
 #' @rdname nor_municip_map_bxxxx_insert_oslo_dt
 "nor_municip_map_b2019_insert_oslo_dt"
+
+#' @rdname nor_municip_map_bxxxx_insert_oslo_dt
+"nor_municip_position_geolabels_b2024_insert_oslo_dt"
 
 #' @rdname nor_municip_map_bxxxx_insert_oslo_dt
 "nor_municip_position_geolabels_b2020_insert_oslo_dt"
@@ -156,7 +202,7 @@
 #' (taken from Geonorge) that can be used in ggplot2 without needing any geo
 #' libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders for 2020 are provided.
+#' Borders for 2024 and 2020 are provided.
 #'
 #' @format
 #' \describe{
@@ -167,6 +213,21 @@
 #' \item{location_code}{Location code (municipality code).}
 #' }
 #' @examples
+#' # 2024 borders
+#' library(ggplot2)
+#' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + geom_polygon(
+#'   data = csmaps::nor_municip_map_b2024_split_dt,
+#'   mapping = aes(group = group),
+#'   color = "black",
+#'   fill = "white",
+#'   linewidth = 0.2
+#' )
+#' q <- q + theme_void()
+#' q <- q + coord_quickmap()
+#' q
+#'
+#' # 2020 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
@@ -174,11 +235,14 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
 #' q
+#' @name nor_municip_map_bxxxx_split_dt
+"nor_municip_map_b2024_split_dt"
+
 #' @name nor_municip_map_bxxxx_split_dt
 "nor_municip_map_b2020_split_dt"
 

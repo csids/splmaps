@@ -24,7 +24,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts0, color = "black", fill = "white", size = 0.2)
+# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts0, color = "black", fill = "white", linewidth = 0.2)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",
@@ -63,7 +63,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts1, color = "black", fill = "white", size = 0.2)
+# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts1, color = "black", fill = "white", linewidth = 0.2)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",
@@ -102,7 +102,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts2, color = "black", fill = "white", size = 0.2)
+# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts2, color = "black", fill = "white", linewidth = 0.2)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",
@@ -141,7 +141,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts3, color = "black", fill = "white", size = 0.2)
+# #' q <- q + geom_polygon(data = fhidata::europe_map_nuts3, color = "black", fill = "white", linewidth = 0.2)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",

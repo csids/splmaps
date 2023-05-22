@@ -69,7 +69,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -83,7 +83,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -97,7 +97,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -111,7 +111,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()

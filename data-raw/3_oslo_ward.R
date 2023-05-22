@@ -71,7 +71,7 @@ gen_oslo_ward_position_geolabels <- function(x_year_end) {
   # d_oslo[, mean_lat := mean(lat), by = location_code]
   # d_oslo_label <- d_oslo[, .(location_code, mean_long, mean_lat)] %>% unique
 
-  stopifnot(x_year_end == 2020)
+  stopifnot(x_year_end %in% c(2020, 2024))
 
   label_positions <- rbindlist(list(
     data.table(
@@ -157,6 +157,12 @@ gen_oslo_ward_position_geolabels <- function(x_year_end) {
 # ***************************** #
 # map default ----
 
+## 2024 ----
+oslo_ward_map_b2024_default_dt <- gen_oslo_ward_map()
+usethis::use_data(oslo_ward_map_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
+oslo_ward_map_b2024_default_sf <- gen_oslo_ward_map(return_sf = T)
+usethis::use_data(oslo_ward_map_b2024_default_sf, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 oslo_ward_map_b2020_default_dt <- gen_oslo_ward_map()
 usethis::use_data(oslo_ward_map_b2020_default_dt, overwrite = TRUE, version = 3, compress = "xz")
@@ -165,6 +171,10 @@ usethis::use_data(oslo_ward_map_b2020_default_sf, overwrite = TRUE, version = 3,
 
 # ***************************** #
 # labels default ----
+
+## 2020 ----
+oslo_ward_position_geolabels_b2024_default_dt <- gen_oslo_ward_position_geolabels(x_year_end = 2024)
+usethis::use_data(oslo_ward_position_geolabels_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 oslo_ward_position_geolabels_b2020_default_dt <- gen_oslo_ward_position_geolabels(x_year_end = 2020)

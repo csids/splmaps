@@ -6,7 +6,7 @@
 #' (taken from Oslo municipality) that can be used in ggplot2 without needing any geo
 #' libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders provided for 2020.
+#' Borders provided for 2024, 2020.
 #'
 #' @format
 #' \describe{
@@ -17,6 +17,26 @@
 #' \item{location_code}{Location code (ward code).}
 #' }
 #' @examples
+#' # 2024 borders
+#' library(ggplot2)
+#' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + geom_polygon(
+#'   data = csmaps::oslo_ward_map_b2024_default_dt,
+#'   mapping = aes(group = group, fill = location_code),
+#'   color = "black",
+#'   fill = "white",
+#'   linewidth = 0.2
+#' )
+#' q <- q + geom_label(
+#'   data = csmaps::oslo_ward_position_geolabels_b2024_default_dt,
+#'   mapping = aes(label = location_code),
+#'   color = "red"
+#' )
+#' q <- q + theme_void()
+#' q <- q + coord_quickmap()
+#' q
+#'
+#' # 2020 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
 #' q <- q + geom_polygon(
@@ -24,7 +44,7 @@
 #'   mapping = aes(group = group, fill = location_code),
 #'   color = "black",
 #'   fill = "white",
-#'   size = 0.2
+#'   linewidth = 0.2
 #' )
 #' q <- q + geom_label(
 #'   data = csmaps::oslo_ward_position_geolabels_b2020_default_dt,
@@ -35,7 +55,13 @@
 #' q <- q + coord_quickmap()
 #' q
 #' @name oslo_ward_map_bxxxx_default_dt
+"oslo_ward_map_b2024_default_dt"
+
+#' @name oslo_ward_map_bxxxx_default_dt
 "oslo_ward_map_b2020_default_dt"
+
+#' @rdname oslo_ward_map_bxxxx_default_dt
+"oslo_ward_position_geolabels_b2024_default_dt"
 
 #' @rdname oslo_ward_map_bxxxx_default_dt
 "oslo_ward_position_geolabels_b2020_default_dt"
@@ -46,7 +72,7 @@
 #'
 #' This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 #'
-#' Borders provided for 2020.
+#' Borders provided for 2024, 2020.
 #'
 #' @format
 #' \describe{
@@ -55,3 +81,6 @@
 #' }
 #' @name oslo_ward_map_bxxxx_default_sf
 "oslo_ward_map_b2020_default_sf"
+
+#' @name oslo_ward_map_bxxxx_default_sf
+"oslo_ward_map_b2024_default_sf"

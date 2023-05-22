@@ -9,7 +9,7 @@ gen_nor_municip_map <- function(
     split = FALSE,
     return_sf=FALSE
 ) {
-  stopifnot(x_year_end %in% c("2019", "2020"))
+  stopifnot(x_year_end %in% c("2019", "2020", "2024"))
 
   . <- NULL
   id <- NULL
@@ -44,12 +44,28 @@ gen_nor_municip_map <- function(
     )
     spdf_simple <- rgeos::gSimplify(spdf, tol=tol, topologyPreserve = F)
     # pryr::object_size(spdf_simple)
+  } else if (x_year_end == 2024) {
+    # fix once 2024 municip files are released
+    spdf <- geojsonio::geojson_read(
+      fs::path("data-raw", "files", "Kommuner20.geojson"),
+      what = "sp"
+    )
+    spdf_simple <- rgeos::gSimplify(spdf, tol=tol, topologyPreserve = F)
+    # pryr::object_size(spdf_simple)
   }
 
   if(return_sf){
     spgeo <- sp::spTransform(spdf_simple, sp::CRS("+proj=longlat +datum=WGS84"))
     x <- sf::st_as_sf(spgeo)
-    x$location_code <- sprintf("municip%s", formatC(as.numeric(spdf$kommunenummer), width = 4, flag = "0"))
+    x$location_code <- sprintf("municip_nor%s", formatC(as.numeric(spdf$kommunenummer), width = 4, flag = "0"))
+    if (x_year_end == 2024){
+      # fix once 2024 municip files are released
+      tmp <- csdata::nor_locations_redistricting(border=2024)[calyear==2020]
+      setkey(tmp, "location_code_original")
+      tmp <- tmp[.(x$location_code)]
+      tmp <- tmp[location_code_current != "municip_nor1580"]
+      x$location_code <- tmp$location_code_current
+    }
     return(x)
   }
 
@@ -58,6 +74,14 @@ gen_nor_municip_map <- function(
 
   setDT(spdf_fortified)
   spdf_fortified[, location_code := sprintf("municip_nor%s", formatC(as.numeric(id), width = 4, flag = "0"))]
+  if (x_year_end == 2024){
+    # fix once 2024 municip files are released
+    tmp <- csdata::nor_locations_redistricting(border=2024)[calyear==2020]
+    setkey(tmp, "location_code_original")
+    tmp <- tmp[.(spdf_fortified$location_code)]
+    tmp <- tmp[location_code_current != "municip_nor1580"]
+    spdf_fortified$location_code <- tmp$location_code_current
+  }
 
   # convert from UTM to latlong
   utm <- spdf_fortified[, c("long", "lat")]
@@ -86,7 +110,9 @@ gen_nor_municip_map <- function(
       stringr::str_subset(spdf_fortified$location_code, "municip_nor18"),
       stringr::str_subset(spdf_fortified$location_code, "municip_nor19"),
       stringr::str_subset(spdf_fortified$location_code, "municip_nor20"),
-      stringr::str_subset(spdf_fortified$location_code, "municip_nor54")
+      stringr::str_subset(spdf_fortified$location_code, "municip_nor54"),
+      stringr::str_subset(spdf_fortified$location_code, "municip_nor55"),
+      stringr::str_subset(spdf_fortified$location_code, "municip_nor56")
     )
     spdf_fortified[location_code %in% locations, long := (long - mean(long)) * 0.60 + mean(long) - 17]
     spdf_fortified[location_code %in% locations, lat := (lat - mean(lat)) * 0.70 + mean(lat) - 5.5]
@@ -119,6 +145,12 @@ gen_nor_municip_map <- function(
 # ***************************** #
 # map default ----
 
+## 2024 ----
+nor_municip_map_b2024_default_dt <-  gen_nor_municip_map(x_year_end=2024)
+usethis::use_data(nor_municip_map_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
+nor_municip_map_b2024_default_sf <-  gen_nor_municip_map(x_year_end=2024, return_sf = T)
+usethis::use_data(nor_municip_map_b2024_default_sf, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 nor_municip_map_b2020_default_dt <-  gen_nor_municip_map(x_year_end=2020)
 usethis::use_data(nor_municip_map_b2020_default_dt, overwrite = TRUE, version = 3, compress = "xz")
@@ -134,6 +166,10 @@ usethis::use_data(nor_municip_map_b2019_default_sf, overwrite = TRUE, version = 
 # ***************************** #
 # map insert oslo ----
 
+## 2024 ----
+nor_municip_map_b2024_insert_oslo_dt <- gen_nor_municip_map(x_year_end=2024, insert = T)
+usethis::use_data(nor_municip_map_b2024_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 nor_municip_map_b2020_insert_oslo_dt <- gen_nor_municip_map(x_year_end=2020, insert = T)
 usethis::use_data(nor_municip_map_b2020_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
@@ -145,12 +181,23 @@ usethis::use_data(nor_municip_map_b2019_insert_oslo_dt, overwrite = TRUE, versio
 # ***************************** #
 # map split ----
 
+## 2024 ----
+nor_municip_map_b2024_split_dt <-  gen_nor_municip_map(x_year_end=2024, split=T)
+usethis::use_data(nor_municip_map_b2024_split_dt, overwrite = TRUE, version = 3, compress = "xz")
+
 ## 2020 ----
 nor_municip_map_b2020_split_dt <-  gen_nor_municip_map(x_year_end=2020, split=T)
 usethis::use_data(nor_municip_map_b2020_split_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 # ***************************** #
 # labels default ----
+
+## 2024 ----
+nor_municip_position_geolabels_b2024_default_dt <- nor_municip_map_b2024_default_dt[,.(
+  long = mean(long),
+  lat = mean(lat)
+), keyby = .(location_code)]
+usethis::use_data(nor_municip_position_geolabels_b2024_default_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 nor_municip_position_geolabels_b2020_default_dt <- nor_municip_map_b2020_default_dt[,.(
@@ -168,6 +215,13 @@ usethis::use_data(nor_municip_position_geolabels_b2019_default_dt, overwrite = T
 
 # ***************************** #
 # labels insert oslo ----
+
+## 2024 ----
+nor_municip_position_geolabels_b2024_insert_oslo_dt <- nor_municip_map_b2024_insert_oslo_dt[,.(
+  long = mean(long),
+  lat = mean(lat)
+), keyby = .(location_code)]
+usethis::use_data(nor_municip_position_geolabels_b2024_insert_oslo_dt, overwrite = TRUE, version = 3, compress = "xz")
 
 ## 2020 ----
 nor_municip_position_geolabels_b2020_insert_oslo_dt <- nor_municip_map_b2020_insert_oslo_dt[,.(

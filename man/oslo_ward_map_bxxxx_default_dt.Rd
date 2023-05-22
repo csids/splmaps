@@ -3,7 +3,9 @@
 \docType{data}
 \name{oslo_ward_map_bxxxx_default_dt}
 \alias{oslo_ward_map_bxxxx_default_dt}
+\alias{oslo_ward_map_b2024_default_dt}
 \alias{oslo_ward_map_b2020_default_dt}
+\alias{oslo_ward_position_geolabels_b2024_default_dt}
 \alias{oslo_ward_position_geolabels_b2020_default_dt}
 \title{Map of Oslo wards (bydeler) in data.table format}
 \format{
@@ -15,10 +17,18 @@
 \item{location_code}{Location code (ward code).}
 }
 
+An object of class \code{data.table} (inherits from \code{data.frame}) with 1372 rows and 5 columns.
+
+An object of class \code{data.table} (inherits from \code{data.frame}) with 15 rows and 3 columns.
+
 An object of class \code{data.table} (inherits from \code{data.frame}) with 15 rows and 3 columns.
 }
 \usage{
+oslo_ward_map_b2024_default_dt
+
 oslo_ward_map_b2020_default_dt
+
+oslo_ward_position_geolabels_b2024_default_dt
 
 oslo_ward_position_geolabels_b2020_default_dt
 }
@@ -28,9 +38,29 @@ We conveniently package map datasets for Oslo wards (bydeler)
 libraries. This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 }
 \details{
-Borders provided for 2020.
+Borders provided for 2024, 2020.
 }
 \examples{
+# 2024 borders
+library(ggplot2)
+q <- ggplot(mapping = aes(x = long, y = lat))
+q <- q + geom_polygon(
+  data = csmaps::oslo_ward_map_b2024_default_dt,
+  mapping = aes(group = group, fill = location_code),
+  color = "black",
+  fill = "white",
+  linewidth = 0.2
+)
+q <- q + geom_label(
+  data = csmaps::oslo_ward_position_geolabels_b2024_default_dt,
+  mapping = aes(label = location_code),
+  color = "red"
+)
+q <- q + theme_void()
+q <- q + coord_quickmap()
+q
+
+# 2020 borders
 library(ggplot2)
 q <- ggplot(mapping = aes(x = long, y = lat))
 q <- q + geom_polygon(
@@ -38,7 +68,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group, fill = location_code),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + geom_label(
   data = csmaps::oslo_ward_position_geolabels_b2020_default_dt,

@@ -40,7 +40,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  size = 0.2
+  linewidth = 0.2
 )
 q <- q + annotate(
   "text",

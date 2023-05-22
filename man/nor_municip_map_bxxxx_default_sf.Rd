@@ -3,6 +3,7 @@
 \docType{data}
 \name{nor_municip_map_bxxxx_default_sf}
 \alias{nor_municip_map_bxxxx_default_sf}
+\alias{nor_municip_map_b2024_default_sf}
 \alias{nor_municip_map_b2020_default_sf}
 \alias{nor_municip_map_b2019_default_sf}
 \title{Maps of Norwegian municipalities in sf format}
@@ -12,9 +13,13 @@
 \item{location_code}{Location code (municipality code).}
 }
 
+An object of class \code{sf} (inherits from \code{data.frame}) with 356 rows and 2 columns.
+
 An object of class \code{sf} (inherits from \code{data.frame}) with 422 rows and 2 columns.
 }
 \usage{
+nor_municip_map_b2024_default_sf
+
 nor_municip_map_b2020_default_sf
 
 nor_municip_map_b2019_default_sf
@@ -23,6 +28,6 @@ nor_municip_map_b2019_default_sf
 This data is licensed under Creative Commons BY 4.0 (CC BY 4.0).
 }
 \details{
-Borders for 2020 and 2019 are provided.
+Borders for 2024, 2020, and 2019 are provided.
 }
 \keyword{datasets}
