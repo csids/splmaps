@@ -27,7 +27,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -41,7 +41,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -55,7 +55,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -127,7 +127,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -147,7 +147,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -167,7 +167,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -224,7 +224,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -238,7 +238,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.4
+#'   linewidth = 0.2
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()

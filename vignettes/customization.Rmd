@@ -105,8 +105,6 @@ q
 We can add labels of county index onto the maps. There are several options for adding texts on a graph in `ggplot2`. We recommend `geom_label()` to add the labels if no label overlap occurs, otherwise we recommend using `ggrepel::geom_label_repel()`. 
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_county_map_b2024_split_dt)
-
 q <- ggplot()
 q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
