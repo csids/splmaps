@@ -26,12 +26,9 @@ library(data.table)
 library(magrittr)
 ```
 
-
-
 The maps can be easily customized with color and labels. 
 
 ## Colored maps
-
 
 ### Automatic coloring by `location_code`
 
@@ -61,10 +58,7 @@ q <- q + coord_quickmap()
 q <- q + labs(title = "")
 q
 ```
- 
- 
- 
- 
+
 ### Customized coloring with external information
 
 It is also possible to specify the color by user-defined groups. Here we show an example of assigning different (pseudo) risk level to each county. 
@@ -148,7 +142,6 @@ q
 
 ```
 
-
 Labels can be easily added to other layouts, such as Oslo wards.
 
 ```{r fig.height=6, fig.width=6}
@@ -177,7 +170,6 @@ q
 ## Enrich plot with additional data 
 
 It is convenient to use `csdata` package to enrich Norway and Oslo maps with external information, such as location name and population. We illustrate how to do it here. 
-
 
 ### Add county name and population to Norway map
 
@@ -230,8 +222,6 @@ q <- q + labs(title = "")
 q
 
 ```
-
-
 
 ### Add location name for ward and population for Oslo map
 
