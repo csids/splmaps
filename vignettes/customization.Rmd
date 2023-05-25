@@ -119,7 +119,7 @@ q <- q + geom_polygon(
   linewidth = 0.4
 )
 q <- q + geom_label(
-  data = csmaps::nor_county_position_geolabels_b2024_default_dt,
+  data = csmaps::nor_county_position_geolabels_b2024_split_dt,
   mapping = aes(
     x = long, 
     y = lat,
