@@ -269,6 +269,7 @@
 #' # 2024 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 #' q <- q + geom_polygon(
 #'   data = csmaps::nor_county_map_b2024_split_dt,
 #'   mapping = aes(group = group),
