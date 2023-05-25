@@ -22,6 +22,7 @@ URL: https://www.csids.no/csmaps/, https://github.com/csids/csmaps
 BugReports: https://github.com/csids/csmaps/issues
 LazyData: true
 Imports: data.table,
+    ggplot2,
     utils
 Suggests: testthat,
     knitr,

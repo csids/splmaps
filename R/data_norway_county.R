@@ -269,12 +269,22 @@
 #' # 2024 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + annotate_oslo_county_map_bxxxx_split_dt()
 #' q <- q + geom_polygon(
 #'   data = csmaps::nor_county_map_b2024_split_dt,
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
 #'   linewidth = 0.2
+#' )
+#' q <- q + ggrepel::geom_label_repel(
+#'   data = csmaps::nor_county_position_geolabels_b2024_split_dt[repel==T],
+#'   mapping = aes(x = long, y = lat, label = location_code),
+#'   min.segment.length = 0
+#' )
+#' q <- q + geom_label(
+#'   data = csmaps::nor_county_position_geolabels_b2024_split_dt[repel==F],
+#'   mapping = aes(x = long, y = lat, label = location_code)
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -283,6 +293,7 @@
 #' # 2020 borders
 #' library(ggplot2)
 #' q <- ggplot(mapping = aes(x = long, y = lat))
+#' q <- q + annotate_oslo_county_map_bxxxx_split_dt()
 #' q <- q + geom_polygon(
 #'   data = csmaps::nor_county_map_b2020_split_dt,
 #'   mapping = aes(group = group),
@@ -294,9 +305,35 @@
 #' q <- q + coord_quickmap()
 #' q
 #' @name nor_county_map_bxxxx_split_dt
-"nor_county_map_b2020_split_dt"
-
-#' @name nor_county_map_bxxxx_split_dt
 "nor_county_map_b2024_split_dt"
 
+#' @name nor_county_map_bxxxx_split_dt
+"nor_county_map_b2020_split_dt"
 
+#' @rdname nor_county_map_bxxxx_split_dt
+"nor_county_position_geolabels_b2024_split_dt"
+
+#' @rdname nor_county_map_bxxxx_split_dt
+"nor_county_position_geolabels_b2020_split_dt"
+
+#' @rdname nor_county_map_bxxxx_split_dt
+#' @export
+annotate_oslo_county_map_bxxxx_split_dt <- function(){
+  list(
+    ggplot2::annotate(
+      "rect",
+      xmin = 0.5,
+      xmax = 3.9,
+      ymin = 58.9,
+      ymax = 61.4,
+      alpha = .2,
+      fill = "grey"
+    ),
+    ggplot2::annotate(
+      "text",
+      x = 2.2,
+      y = 59.15,
+      label = "Oslo"
+    )
+  )
+}

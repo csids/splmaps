@@ -21,19 +21,19 @@
 \item{location_code}{Location code (county code).}
 }
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 4493 rows and 5 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4537 rows and 5 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 4736 rows and 5 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4780 rows and 5 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 4545 rows and 5 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4589 rows and 5 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 15 rows and 3 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 15 rows and 4 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 11 rows and 3 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 11 rows and 4 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 18 rows and 3 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 18 rows and 4 columns.
 
-An object of class \code{data.table} (inherits from \code{data.frame}) with 19 rows and 3 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 19 rows and 4 columns.
 }
 \usage{
 nor_county_map_b2024_insert_oslo_dt
