@@ -59,7 +59,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  linewidth = 0.2
+  linewidth = 0.4
 )
 q <- q + annotate(
   "text",
@@ -79,7 +79,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  linewidth = 0.2
+  linewidth = 0.4
 )
 q <- q + annotate(
   "text",
@@ -99,7 +99,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  linewidth = 0.2
+  linewidth = 0.4
 )
 q <- q + annotate(
   "text",

@@ -33,9 +33,10 @@ The maps can be easily customized with color and labels.
 ### Automatic coloring by `location_code`
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
+pd <- copy(csmaps::nor_county_map_b2024_split_dt)
 
 q <- ggplot()
+q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
   data = pd, 
   mapping = aes(
@@ -45,13 +46,7 @@ q <- q + geom_polygon(
     fill = location_code
   ),  
   color="black",
-  linewidth = 0.2
-)
-q <- q + annotate(
-  "text",
-  x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
-  y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
-  label = "Oslo"
+  linewidth = 0.4
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -64,7 +59,7 @@ q
 It is also possible to specify the color by user-defined groups. Here we show an example of assigning different (pseudo) risk level to each county. 
 
 ```{r fig.height=6, fig.width=6, warning=FALSE}
-pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
+pd <- copy(csmaps::nor_county_map_b2024_split_dt)
 
 # assign each location a random category for different colors
 location_info <- unique(pd[,c("location_code")])
@@ -80,25 +75,24 @@ location_info[,category:=factor(
 print(location_info)
 
 # join the map data.table
-pd[location_info,on="location_code",category:=category]
+pd[
+  location_info,
+  on="location_code",
+  category:=category
+]
 
 q <- ggplot()
+q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
   data = pd, 
   mapping = aes(
-    x = long,
+    x = long, 
     y = lat,
     group = group,
-    fill=category
-  ), 
-  color="black", 
-  size=0.25
-)
-q <- q + annotate(
-  "text",
-  x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
-  y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
-  label = "Oslo"
+    fill = category
+  ),  
+  color="black",
+  linewidth = 0.4
 )
 q <- q + coord_quickmap()
 q <- q + labs(title="")
@@ -111,29 +105,29 @@ q
 We can add labels of county index onto the maps. There are several options for adding texts on a graph in `ggplot2`. We recommend `geom_label()` to add the labels if no label overlap occurs, otherwise we recommend using `ggrepel::geom_label_repel()`. 
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
+pd <- copy(csmaps::nor_county_map_b2024_split_dt)
+
 q <- ggplot()
+q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
   data = pd, 
   mapping = aes(
-    x = long,
+    x = long, 
     y = lat,
     group = group,
-    fill = location_code
+    fill = category
   ),  
   color="black",
-  linewidth = 0.2
-)
-q <- q + annotate(
-  "text",
-  x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
-  y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
-  label = "Oslo"
+  linewidth = 0.4
 )
 q <- q + geom_label(
   data = csmaps::nor_county_position_geolabels_b2024_default_dt,
-  mapping = aes(x = long, y = lat, label = location_code)
+  mapping = aes(
+    x = long, 
+    y = lat,
+    label = location_code
   )
+)
 # ggrepel::geom_label_repel() for avoiding overlap
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -151,7 +145,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  linewidth = 0.2
+  linewidth = 0.4
 )
 q <- q + geom_label(
   data = csmaps::oslo_ward_position_geolabels_b2024_default_dt,
@@ -175,10 +169,13 @@ It is convenient to use `csdata` package to enrich Norway and Oslo maps with ext
 
 ```{r fig.height=6, fig.width=6}
 # enrich with population and location name
-dpop_2024 <- csdata::nor_population_by_age_cats()[calyear==2024]
+dpop_2024 <- csdata::nor_population_by_age_cats()[
+  calyear==2024 &
+  granularity_geo %in% "county"
+]
 
 # join, create label
-labels <- copy(csmaps::nor_county_position_geolabels_b2024_insert_oslo_dt)
+labels <- copy(csmaps::nor_county_position_geolabels_b2024_split_dt)
 labels[
   dpop_2024, 
   on = "location_code",
@@ -193,8 +190,10 @@ labels[, label := paste0(location_name, '\n', pop_total)]
 print(head(labels))
 
 # plot
-pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
+pd <- copy(csmaps::nor_county_map_b2024_split_dt)
+
 q <- ggplot()
+q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
   data = pd, 
   mapping = aes(
@@ -204,16 +203,15 @@ q <- q + geom_polygon(
     fill = location_code
   ),
   color="black",
-  linewidth = 0.2
-)
-q <- q + annotate(
-  "text",
-  x = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$long,
-  y = csmaps::nor_xxx_position_title_insert_oslo_b2024_insert_oslo_dt$lat,
-  label = "Oslo"
+  linewidth = 0.4
 )
 q <- q + ggrepel::geom_label_repel(
-  data = labels,
+  data = labels[repel==TRUE],
+  mapping = aes(x = long, y = lat, label = label),
+  min.segment.length = 0
+)
+q <- q + geom_label(
+  data = labels[repel==FALSE],
   mapping = aes(x = long, y = lat, label = label)
 )
 q <- q + theme_void()
@@ -250,7 +248,7 @@ q <- q + geom_polygon(
   mapping = aes(group = group),
   color = "black",
   fill = "white",
-  linewidth = 0.2
+  linewidth = 0.4
 )
 q <- q + geom_label(
   data = labels,

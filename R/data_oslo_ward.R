@@ -25,7 +25,7 @@
 #'   mapping = aes(group = group, fill = location_code),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + geom_label(
 #'   data = csmaps::oslo_ward_position_geolabels_b2024_default_dt,
@@ -44,7 +44,7 @@
 #'   mapping = aes(group = group, fill = location_code),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + geom_label(
 #'   data = csmaps::oslo_ward_position_geolabels_b2020_default_dt,

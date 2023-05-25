@@ -46,7 +46,7 @@
 # #' @examples
 # #' library(ggplot2)
 # #' q <- ggplot(mapping = aes(x = long, y = lat, group = group))
-# #' q <- q + geom_polygon(data = csmaps::world_map, color = "black", fill = "white", linewidth = 0.2)
+# #' q <- q + geom_polygon(data = csmaps::world_map, color = "black", fill = "white", linewidth = 0.4)
 # #' q <- q + theme_void()
 # #' q <- q + coord_map(
 # #'   projection = "cylequalarea",

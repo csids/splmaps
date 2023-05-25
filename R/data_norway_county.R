@@ -27,7 +27,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -41,7 +41,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -55,7 +55,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -69,7 +69,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -150,7 +150,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -171,7 +171,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -191,7 +191,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -211,7 +211,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + annotate(
 #'   "text",
@@ -275,7 +275,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -290,7 +290,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + ggrepel::geom_label_repel(
 #'   data = csmaps::nor_county_position_geolabels_b2024_split_dt[repel==TRUE],
@@ -314,7 +314,7 @@
 #'   mapping = aes(group = group),
 #'   color = "black",
 #'   fill = "white",
-#'   linewidth = 0.2
+#'   linewidth = 0.4
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()
@@ -335,14 +335,23 @@
 #' @export
 annotate_oslo_nor_map_bxxxx_split_dt <- function(){
   list(
+    # ggplot2::annotate(
+    #   "rect",
+    #   xmin = 0.5,
+    #   xmax = 3.9,
+    #   ymin = 58.9,
+    #   ymax = 61.4,
+    #   alpha = .2,
+    #   fill = "grey"
+    # ),
     ggplot2::annotate(
       "rect",
       xmin = 0.5,
       xmax = 3.9,
       ymin = 58.9,
       ymax = 61.4,
-      alpha = .2,
-      fill = "grey"
+      fill = "white",
+      color = "black"
     ),
     ggplot2::annotate(
       "text",

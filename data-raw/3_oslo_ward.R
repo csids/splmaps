@@ -75,9 +75,9 @@ gen_oslo_ward_position_geolabels <- function(x_year_end) {
 
   label_positions <- rbindlist(list(
     data.table(
-      location_code = "wardoslo_nor030101",
-      long = 10.7976,
-      lat = 59.9101
+      location_code = "wardoslo_nor030101", # gamle oslo
+      long = 10.72,
+      lat = 59.89
     ),
     data.table(
       location_code = "wardoslo_nor030102",
@@ -95,7 +95,7 @@ gen_oslo_ward_position_geolabels <- function(x_year_end) {
       lat = 59.91230
     ),
     data.table(
-      location_code = "wardoslo_nor030105",
+      location_code = "wardoslo_nor030105", # frogner
       long = 10.665,
       lat = 59.89925
     ),
