@@ -1,6 +1,6 @@
 # Version 2023.5.25
 
-- Inclusion of annotate_oslo_county_map_bxxxx_split_dt, nor_county_position_geolabels_b2024_split_dt, nor_county_position_geolabels_b2020_split_dt.
+- Inclusion of annotate_oslo_nor_map_bxxxx_split_dt, nor_county_position_geolabels_b2024_split_dt, nor_county_position_geolabels_b2020_split_dt.
 
 # Version 2023.5.22
 
