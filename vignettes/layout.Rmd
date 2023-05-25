@@ -35,7 +35,7 @@ For Oslo county map, we only have the **default** layout.
 ### Norway layout: default
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_municip_map_b2024_default_dt)
+pd <- copy(csmaps::nor_county_map_b2024_default_dt)
 q <- ggplot()
 q <- q + geom_polygon(
   data = pd, 
@@ -57,7 +57,7 @@ q
 ### Norway layout: split 
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_municip_map_b2024_split_dt)
+pd <- copy(csmaps::nor_county_map_b2024_split_dt)
 q <- ggplot()
 q <- q + csmaps::annotate_oslo_nor_map_bxxxx_split_dt()
 q <- q + geom_polygon(
@@ -80,7 +80,7 @@ q
 ### Norway layout: insert oslo
 
 ```{r fig.height=6, fig.width=6}
-pd <- copy(csmaps::nor_municip_map_b2024_insert_oslo_dt)
+pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
 q <- ggplot()
 q <- q + geom_polygon(
   data = pd,

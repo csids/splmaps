@@ -191,8 +191,8 @@ gen_nor_county_position_geolabels <- function(x_year_end, split = F, insert = F)
       ),
       data.table(
         location_code = "county_nor18", # nordland
-        long = 14.8,
-        lat = 66.75,
+        long = 14.9,
+        lat = 66.8,
         repel = F
       ),
       data.table(
