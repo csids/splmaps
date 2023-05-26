@@ -26,13 +26,62 @@ library(data.table)
 library(magrittr)
 ```
 
-## Layout options
+## Naming scheme
+
+The naming scheme has the following pattern: `scope_geogranularity_type_border_layout_Rclass`. 
+
+### Scope
+
+This is what content the map data contains. Currently we focus on these 2 scopes: 
+
+- Country (Norway).
+- City (Oslo).
+
+### Geogranularity 
+
+This is the geographic granularity, which defines the border of county, municipality and ward.
+
+- County (fylke) is equivalent to [NUTS3](https://ec.europa.eu/eurostat/documents/345175/7451602/2021-NUTS-3-map-NO.pdf) (Nomenclature of Territorial Unit level 3).
+- Municip (kommune) is equivalent to LAU2 (Local Administrative Unit level 2).
+- Ward (bydel) is an administrative region within a large municipality.
+- xxx: only used for plotting `position_title` (see [example](#norway-layout-insert-oslo)).
+
+### Type 
+
+The type of the data object to distinguish whether it's a geographical map or coordinate for label positions. 
+- Map: Map data.
+- Position geolabels: Geographical coordinates for the position of labels, e.g. "county03" or "Oslo".
+- Position title (insert oslo): Geographical coordinate for position of title. So far it's only for layout: `insert_oslo`. (see [example](#norway-layout-insert-oslo))
+
+### Border 
+
+Due to recent redistricting, there exist multiple versions of county/municip borders. We provide maps that match the borders in the following years: 
+
+- 2024: The current border, this map contains 15 counties. 
+- 2020: Border before redistricting in 2024. This map contains 11 counties.
+- 2019: Border before redistricting in 2020. This map contains 18 counties. 
+- 2017: Border before redistricting in 2018. This map contains 19 counties.
+
+More information on counties in Norway can be found [here](https://en.wikipedia.org/wiki/Counties_of_Norway#cite_note-13). 
+
+### Layout
+
+See the [layout](#layout) section below.
+
+### R class
+
+R class for the map object. 
+
+- `data.table`: applicable for maps and label/title coordinates.
+- `sf`: simple feature for spatial vector data. More on [sf](https://r-spatial.github.io/sf/articles/).
+
+## Layout
 
 We have 3 layout options for Norway map: **default, split** and **insert Oslo**. 
 
-For Oslo county map, we only have the **default** layout. 
+For the Oslo map, we only have the **default** layout. 
 
-### Norway layout: default
+### Norway: default
 
 ```{r fig.height=6, fig.width=6}
 pd <- copy(csmaps::nor_county_map_b2024_default_dt)
@@ -54,7 +103,7 @@ q <- q + labs(title = "Default layout")
 q
 ```
 
-### Norway layout: split 
+### Norway: split 
 
 ```{r fig.height=6, fig.width=6}
 pd <- copy(csmaps::nor_county_map_b2024_split_dt)
@@ -77,7 +126,7 @@ q <- q + labs(title = "Split layout")
 q
 ```
 
-### Norway layout: insert oslo
+### Norway: insert oslo
 
 ```{r fig.height=6, fig.width=6}
 pd <- copy(csmaps::nor_county_map_b2024_insert_oslo_dt)
@@ -105,7 +154,7 @@ q <- q + labs(title = "Insert Oslo layout")
 q
 ```
 
-#### Oslo ward layout: default 
+#### Oslo ward: default 
 
 ```{r fig.height=6, fig.width=6}
 pd <- copy(csmaps::oslo_ward_map_b2024_default_dt)

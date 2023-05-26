@@ -2,3 +2,11 @@ url: https://www.csids.no/csmaps/
 
 template:
   package: csidstemplatepkgdown
+
+articles:
+- title: All vignettes
+  navbar: ~
+  contents:
+  - layout
+  - customization
+  - sf_interactive

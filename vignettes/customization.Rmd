@@ -26,8 +26,6 @@ library(data.table)
 library(magrittr)
 ```
 
-The maps can be easily customized with color and labels. 
-
 ## Colored maps
 
 ### Automatic coloring by `location_code`
@@ -161,7 +159,7 @@ q
 
 ## Enrich plot with additional data 
 
-It is convenient to use `csdata` package to enrich Norway and Oslo maps with external information, such as location name and population. We illustrate how to do it here. 
+It is convenient to use `csdata` package to enrich Norway and Oslo maps with external information, such as location name and population.
 
 ### Add county name and population to Norway map
 
@@ -182,9 +180,9 @@ labels[
 labels[
   csdata::nor_locations_names(), 
   on = "location_code",
-  location_name := location_name
+  location_name_short := location_name_short
 ]
-labels[, label := paste0(location_name, '\n', pop_total)]
+labels[, label := paste0(location_name_short, '\n', pop_total)]
 print(head(labels))
 
 # plot
@@ -206,11 +204,17 @@ q <- q + geom_polygon(
 q <- q + ggrepel::geom_label_repel(
   data = labels[repel==TRUE],
   mapping = aes(x = long, y = lat, label = label),
+  size = 3,
+  label.size = 0.1,
+  label.r = grid::unit(0, "lines"),
   min.segment.length = 0
 )
 q <- q + geom_label(
   data = labels[repel==FALSE],
-  mapping = aes(x = long, y = lat, label = label)
+  mapping = aes(x = long, y = lat, label = label),
+  size = 3,
+  label.size = 0.1,
+  label.r = grid::unit(0, "lines")
 )
 q <- q + theme_void()
 q <- q + coord_quickmap()
@@ -235,9 +239,9 @@ labels[
 labels[
   csdata::nor_locations_names(), 
   on = "location_code",
-  location_name := location_name
+  location_name_short := location_name_short
 ]
-labels[, label := paste0(location_name, '\n', pop_total)]
+labels[, label := paste0(location_name_short, '\n', pop_total)]
 print(head(labels))
 
 q <- ggplot(mapping = aes(x = long, y = lat))

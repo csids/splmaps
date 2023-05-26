@@ -295,11 +295,17 @@
 #' q <- q + ggrepel::geom_label_repel(
 #'   data = csmaps::nor_county_position_geolabels_b2024_split_dt[repel==TRUE],
 #'   mapping = aes(x = long, y = lat, label = location_code),
+#'   size = 3,
+#'   label.size = 0.1,
+#'   label.r = grid::unit(0, "lines"),
 #'   min.segment.length = 0
 #' )
 #' q <- q + geom_label(
 #'   data = csmaps::nor_county_position_geolabels_b2024_split_dt[repel==FALSE],
-#'   mapping = aes(x = long, y = lat, label = location_code)
+#'   mapping = aes(x = long, y = lat, label = location_code),
+#'   size = 3,
+#'   label.size = 0.1,
+#'   label.r = grid::unit(0, "lines")
 #' )
 #' q <- q + theme_void()
 #' q <- q + coord_quickmap()

@@ -47,7 +47,6 @@ q <- q + theme_void()
 q <- q + coord_quickmap()
 q <- q + labs(title = "Default layout")
 q
-
 pd <- copy(csmaps::nor_county_map_b2024_default_dt)
 q <- ggplot()
 q <- q + geom_polygon(
