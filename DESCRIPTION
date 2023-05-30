@@ -8,7 +8,6 @@ Authors@R: c(
   person("Chi", "Zhang", email = "andreachizhang@yahoo.com", role = c("aut"), 
     comment = c(ORCID = "0000-0003-0501-5909")
   ),
-  person("Geonorge", role = c("ctb")),
   person("CSIDS", email = "hello@csids.no", role = c("cph"))
   )
 Description: Provides datasets containing preformatted maps of Norway at
