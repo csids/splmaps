@@ -1,10 +1,10 @@
 ---
-title: "csmaps"
+title: "Introduction"
 output: rmarkdown::html_vignette
 author: "Richard Aubrey White, Chi Zhang"
-date: "2021-01-15"
+date: "2023-05-30"
 vignette: >
-  %\VignetteIndexEntry{csmaps}
+  %\VignetteIndexEntry{Introduction}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
