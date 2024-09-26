@@ -126,7 +126,7 @@ gen_nor_county_position_geolabels <- function(x_year_end, split = F, insert = F)
       data.table(
         location_code = "county_nor31", # Østfold
         long = 11.5,
-        lat = 59.0,
+        lat = 59.32481,
         repel = T
       ),
       data.table(
@@ -179,15 +179,15 @@ gen_nor_county_position_geolabels <- function(x_year_end, split = F, insert = F)
       ),
       data.table(
         location_code = "county_nor46",
-        long = 5.4,
-        lat = 61.6,
-        repel = F
+        long = 6.5,
+        lat = 61.45,
+        repel = T
       ),
       data.table(
         location_code = "county_nor15",
-        long = 7.4,
-        lat = 62.7,
-        repel = F
+        long = 7.8,
+        lat = 62.5,
+        repel = T
       ),
       data.table(
         location_code = "county_nor18", # nordland
